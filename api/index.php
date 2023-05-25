@@ -1,4 +1,5 @@
 <?
+
 include_once 'common/helpers.php';
 include_once '../common/connection.php';
 
@@ -6,8 +7,6 @@ include_once '../common/connection.php';
 $data = \Helpers\getRequestData();
 
 $router = $data['router'];
-
-// header("Content-Type: application/json");
 
 // Проверяем роутер на валидность
 if (\Helpers\isValidRouter($router)) {

@@ -1,5 +1,12 @@
 <?
 session_start();
+
+if (!isset($_SESSION["role"])) {
+	$_SESSION["role"] = 0;
+	header("Location: /index.php");
+} else if ($_SESSION["role"] == 0) {
+	header("Location: /index.php");
+}
 if (!isset($_SESSION['token'])) {
 	$random_bytes = random_bytes(5); // генерируем 5 случайных байт
 	$random_string = base64_encode($random_bytes); // преобразуем в формат base64
@@ -20,7 +27,7 @@ if (!isset($_SESSION['token'])) {
 			opacity: 0;
 		}
 	</style>
-	<link rel="stylesheet" href="css/style.min.css?_v=20230525142001">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230525130846">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="theme-color" content="#1F1F1F">
 	<meta name="robots" content="noindex, nofollow">
@@ -28,56 +35,106 @@ if (!isset($_SESSION['token'])) {
 </head>
 
 <body>
-	<div class="wrapper">
-		<header class="header">
-			<div class="header__container">
-				<a href="#" class="header__logo">
-					<img src="img/icons/logo.svg" alt="Логотип - Лиммонный сад">
-				</a>
-				<div class="header__buttons data-right">
-					<input class="header__radio" type="radio" name="viewOption" id="viewList"></input>
-					<label class="header__label" for="viewList">Список</label>
-					<input class="header__radio" type="radio" name="viewOption" id="viewScheme" checked></input>
-					<label class="header__label" for="viewScheme" id="buttonScheme">Схема</label>
+	<div class="wrapper wrapper_hostess">
+		<section class="page-1">
+			<div class="page-1__body">
+				<div class="page-1__top top-page-1">
+					<a href="/exit.php" class="top-page-1__exit">Выход</a>
 				</div>
-				<a class="header__phone" href="tel:+77009992323">+77009992323</a>
-			</div>
-		</header>
-		<main class="page">
-			<section class="page__scheme scheme">
-				<div class="scheme__body">
-				</div>
-				<div class="scheme__control control-scheme">
-					<button class="control-scheme__plus"></button>
-					<button class="control-scheme__minus"></button>
-				</div>
-			</section>
-			<section class="page__list list">
-				<div class="list__container">
-					<ul class="list__body">
+				<div class="page-1__middle list-page-1">
+					<div class="open-table d-none">
+						<button class="open-table__exit">Выбрать другую бронь</button>
+						<div class="li-list-page-1">
+							<div class="li-list-page-1__top">
+								<p class="li-list-page-1__number">№<span>105</span></p>
+								<p class="li-list-page-1__table">Стол №<span>2</span></p>
+							</div>
+							<div class="li-list-page-1__middle">
+								<p class="li-list-page-1__name-amount"><span class="name">Павел</span>, <span class="amount">2</span> чел.</p>
+								<p class="li-list-page-1__time"></p>
+							</div>
+							<div class="li-list-page-1__bottom">
+								<p class="li-list-page-1__status" style="margin-bottom: 40px;">Открыто</p>
+								<p class="li-list-page-1__Phone-number"></p>
+							</div>
+						</div>
+						<p class="open-table__desc">Комментарий: <span></span></p>
+						<div class="open-table__bottom">
+							<button class="open-table__button open-table__button_close">
+								Закрыть
+							</button>
+							<button class="open-table__button open-table__button_waiting">
+								Ожидать
+							</button>
+							<button class="open-table__button open-table__button_open">
+								Открыть
+							</button>
+						</div>
+					</div>
+					<ul class="list-page-1__ul">
 					</ul>
 				</div>
-			</section>
-		</main>
-		<footer class="footer">
-			<div class="footer__container">
-				<div class="footer__top">
-					<p class="footer__time">
-						C <span></span>
-					</p>
-					<div class="footer__point">
-						<img src="img/icons/point.svg" alt="point">
+			</div>
+		</section>
+		<section class="right-block">
+			<main class="page__hostess">
+				<section class="page__2">
+					<header class="header">
+						<div class="header__container">
+							<a href="#" class="header__logo">
+								<img src="img/icons/logo.svg" alt="Логотип - Лиммонный сад">
+							</a>
+							<div class="header__buttons data-right">
+								<input class="header__radio" type="radio" name="viewOption" id="viewList"></input>
+								<label class="header__label" for="viewList">Список</label>
+								<input class="header__radio" type="radio" name="viewOption" id="viewScheme" checked></input>
+								<label class="header__label" for="viewScheme" id="buttonScheme">Схема</label>
+							</div>
+							<div class="header__menu menu">
+								<button type="button" class="menu__icon icon-menu"><span></span></button>
+							</div>
+						</div>
+					</header>
+					<div class="hostess-wrapper2">
+						<section class="page__scheme scheme">
+							<div class="scheme__body">
+							</div>
+							<div class="scheme__control control-scheme">
+								<button class="control-scheme__plus"></button>
+								<button class="control-scheme__minus"></button>
+							</div>
+						</section>
+						<section class="page__list list">
+							<div class="list__container">
+								<ul class="list__body">
+								</ul>
+							</div>
+						</section>
 					</div>
-					<input class="footer__date" type="text" id="calendar">
-				</div>
-				<div class="footer__body time">
-					<div class="time__slider swiper">
-						<div class="time__wrapper swiper-wrapper">
+				</section>
+			</main>
+			<footer class="footer footer_hostess">
+				<div class="footer__left"></div>
+				<div class="footer__right">
+					<div class="footer__top">
+						<p class="footer__time">
+							C <span></span>
+						</p>
+						<div class="footer__point">
+							<img src="img/icons/point.svg" alt="point">
+						</div>
+						<input class="footer__date" type="text" id="calendar">
+					</div>
+					<div class="footer__body time">
+						<div class="time__slider swiper">
+							<div class="time__wrapper swiper-wrapper">
+								
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</footer>
+			</footer>
+		</section>
 	</div>
 	<div id="popup" aria-hidden="true" class="popup" data-id="0">
 		<div class="popup__wrapper">
@@ -253,6 +310,7 @@ if (!isset($_SESSION['token'])) {
 						<div class="form-popup2__time">
 							<label for="time-to" class="form-popup2__name-input">До</label>
 							<input id="time-to2" name="time-to" class="form-popup2__time-input" type="time">
+							<input class="book__secure" hidden type="text" value="<?=$_SESSION['token']?>" required>
 						</div>
 						<p class="form-popup2__busy"></p>
 					</div>
@@ -298,7 +356,7 @@ if (!isset($_SESSION['token'])) {
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20230525142001"></script>
+	<script src="js/app.min.js?_v=20230525130846"></script>
 </body>
 
 </html>

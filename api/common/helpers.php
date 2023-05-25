@@ -10,7 +10,7 @@ function getFormData($method)
 	if ($method === 'GET') {
 		$data = $_GET;
 	} else if ($method === 'POST') {
-		$data = $_POST;
+		$data = json_decode(file_get_contents('php://input'), true);
 	} else {
 		// PUT, PATCH или DELETE
 		$data = json_decode(file_get_contents('php://input'), true);
