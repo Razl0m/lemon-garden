@@ -8,6 +8,8 @@ $data = \Helpers\getRequestData();
 
 $router = $data['router'];
 
+
+
 // Проверяем роутер на валидность
 if (\Helpers\isValidRouter($router)) {
    // Подключаем файл-роутер

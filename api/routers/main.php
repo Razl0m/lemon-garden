@@ -34,7 +34,7 @@ function route($data, $db)
       // POST /main/changereservation
       echo json_encode(changeReservation($db, $data['formData']));
    } else if ($data['method'] == "GET" && count($data['urlData']) == 2 && $data['urlData'][1] == "tableplan") {
-      // POST /main/tableplan
+      // GET /main/tableplan
       echo json_encode(getTablePlan($db, $data['formData']));
    } else if ($data['method'] == "POST" && count($data['urlData']) == 2 && $data['urlData'][1] == "updatetableplab") {
       // POST /main/updatetableplab
@@ -46,8 +46,12 @@ function route($data, $db)
 
 function getWorkTime($db, $restorantId)
 {
-   $workTime = $db->getOne("SELECT work_time FROM restaurants WHERE id = ?i", $restorantId);
-   return $workTime;
+   try {
+      $workTime = $db->getOne("SELECT work_time FROM restaurants WHERE id = ?i", $restorantId);
+      return $workTime;
+   } catch (\Throwable $th) {
+      \Helpers\throwHttpError('api_error', 'api sql error');
+   }
 }
 
 function getFloorPlan($db, $restorantId)

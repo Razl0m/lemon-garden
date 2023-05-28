@@ -11,4 +11,8 @@ $opts = array(
    'db'      => $_ENV['DBname'],
 );
 
-$db = new SafeMySQL($opts);
+try {
+   $db = new SafeMySQL($opts);
+} catch (\Throwable $th) {
+   echo $th;
+}

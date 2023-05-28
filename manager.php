@@ -79,7 +79,6 @@ if (isset($_POST["id"]) && isset($_POST["login"]) && isset($_POST["name"]) && is
 								$openClass = "";
 							}
 						}
-						dump($users);
 						?>
 					</ul>
 				</div>

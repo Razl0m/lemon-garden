@@ -24807,6 +24807,7 @@
                     const tableInfo = tables[idTable - 1];
                     const maxSeats = tableInfo.maxSeats;
                     const selectGuests = popup.querySelector(".form-popup__select");
+                    selectGuests.innerHTML = "";
                     for (let i = 1; i <= maxSeats; i++) if (i > 1 && i < 5) selectGuests.insertAdjacentHTML("beforeEnd", `<option value="${i}">${i} человека</option>`); else selectGuests.insertAdjacentHTML("beforeEnd", `<option value="${i}">${i} человек</option>`);
                     const form = popup.querySelector(".form-popup");
                     const firstName = form.elements.firstName;
@@ -25187,6 +25188,9 @@
                     }));
                 }));
             }
+            setInterval((function() {
+                updateAll();
+            }), 6e4);
         }));
         window["FLS"] = true;
         isWebp();
